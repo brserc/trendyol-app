@@ -23,7 +23,7 @@ lazy val root = (project in file(".")).
     libraryDependencies ++= flinkDependencies
   )
 
-assembly / mainClass := Some("ercanbaris.Job")
+assembly / mainClass := Some("ercanbaris.TrendyolCaseBatchJob")
 
 // make run command include the provided dependencies
 Compile / run  := Defaults.runTask(Compile / fullClasspath,
