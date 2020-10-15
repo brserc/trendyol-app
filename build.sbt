@@ -23,6 +23,8 @@ lazy val root = (project in file(".")).
     libraryDependencies ++= flinkDependencies
   )
 
+libraryDependencies ++= Seq("org.scalatest" %% "scalatest" % "3.0.8" % Test)
+
 assembly / mainClass := Some("ercanbaris.TrendyolCaseBatchJob")
 
 // make run command include the provided dependencies
