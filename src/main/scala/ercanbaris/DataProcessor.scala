@@ -5,7 +5,8 @@ import org.apache.flink.api.scala._
 object DataProcessor {
 
     def uniqueProductViewByProductId(data : DataSet[(UserAction)]) : DataSet[(Int,Int)] = {
-        val processedData: DataSet[(Int,Int)] = null
+        val processedData: DataSet[(Int,Int)] = data.filter{_.eventName == "view"}.map{ua => (ua.productId,1)}.groupBy(0).sum(1)
+        processedData.print
         processedData
     }
 
