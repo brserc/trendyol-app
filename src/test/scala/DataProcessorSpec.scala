@@ -40,7 +40,6 @@ class DataProcessorSpec extends FunSpec {
     describe("DataProcessor::uniqueProductViewByProductId") {
         it("should handle testdata1"){
             val expectedProductViewByProductId: DataSet[(Int,Int)] = env.fromElements((7,2),(5,2),(4,1))
-            expectedProductViewByProductId.print
             assert(DataProcessor.uniqueProductViewByProductId(testData1).collect().equals(expectedProductViewByProductId.collect()))
         }
     }
@@ -55,7 +54,7 @@ class DataProcessorSpec extends FunSpec {
     describe("DataProcessor::topFiveFulfilledAllEvents") {
         it("should handle testdata1"){
             val expectedTopFiveFulfilledAllEvents: DataSet[(Int)] = env.fromElements((7))
-            assert(DataProcessor.topFiveFulfilledAllEvents(testData1.collect()).equals(expectedTopFiveFulfilledAllEvents.collect()))        
+            assert(DataProcessor.topFiveFulfilledAllEvents(testData1).collect().equals(expectedTopFiveFulfilledAllEvents.collect()))        
         }        
     }
 
