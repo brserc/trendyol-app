@@ -2,6 +2,7 @@ package ercanbaris
 
 import org.apache.flink.api.scala._
 import org.apache.flink.util.Collector
+import org.apache.flink.api.common.operators.Order
 
 object DataProcessor {
 
@@ -18,8 +19,10 @@ object DataProcessor {
     }
 
     def topFiveFulfilledAllEvents(data : DataSet[UserAction]) : DataSet[Tuple1[Int]] = {
-        val processedData: DataSet[Tuple1[Int]] = data.map{ua =>(ua.userId,ua.eventName,1)}.map{ua => (ua._1,ua._2,1)}.groupBy(0).sum(2).filter{_._3 == 4}.map{ua =>Tuple1(ua._1)}
-        //processedData.print
+        val processedData: DataSet[Tuple1[Int]] = data.map{ua => (ua.userId,Set(ua.eventName))}.groupBy(0).reduce{
+                                                        (a:(Int,Set[String]),b:(Int,Set[String]))=>(a._1,a._2++b._2)}.
+                                                        filter{_._2.size == 4}.map{a => Tuple1(a._1)}.sortPartition(0, Order.DESCENDING).first(5)
+    
         processedData
     }
 
