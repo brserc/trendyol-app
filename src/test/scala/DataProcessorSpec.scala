@@ -22,13 +22,13 @@ class DataProcessorSpec extends FunSpec {
 
     describe("DataProcessor::all") {
         it("should handle empty input"){
-            val expectedProductViewByUserId: DataSet[(Int,Int)] = env.fromElements()
+            val expectedProductViewByProductId: DataSet[(Int,Int)] = env.fromElements()
             val expectedUniqueEventCounts: DataSet[(String,Int)] = env.fromElements()
             val expectedTopFiveFulfilledAllEvents: DataSet[(Int)] = env.fromElements()
             val expectedAllEventsOfUser: DataSet[(String,Int)] = env.fromElements()
             val expectedProductViewsOfUser: DataSet[(Int)] = env.fromElements()
 
-            assert(DataProcessor.uniqueProductViewByUserId(testDataEmpty) == expectedProductViewByUserId)
+            assert(DataProcessor.uniqueProductViewByProductId(testDataEmpty) == expectedProductViewByUserId)
             assert(DataProcessor.uniqueEventCounts(testDataEmpty) == expectedUniqueEventCounts)
             assert(DataProcessor.topFiveFulfilledAllEvents(testDataEmpty) == expectedTopFiveFulfilledAllEvents)
             assert(DataProcessor.allEventsOfUser(testDataEmpty,7) == expectedAllEventsOfUser)
@@ -37,8 +37,11 @@ class DataProcessorSpec extends FunSpec {
         
     }
 
-    describe("DataProcessor::uniqueProductViewByUserId") {
-        
+    describe("DataProcessor::uniqueProductViewByProductId") {
+        it("should handle testdata1"){
+            val expectedProductViewByUserId: DataSet[(Int,Int)] = env.fromElements()
+            assert(DataProcessor.uniqueProductViewByProductId(testDataEmpty) == expectedProductViewByProductId)
+        }
     }
 
     describe("DataProcessor::uniqueEventCounts") {

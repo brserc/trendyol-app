@@ -4,7 +4,7 @@ import org.apache.flink.api.scala._
 
 object DataProcessor {
 
-    def uniqueProductViewByUserId(data : DataSet[(UserAction)]) : DataSet[(Int,Int)] = {
+    def uniqueProductViewByProductId(data : DataSet[(UserAction)]) : DataSet[(Int,Int)] = {
         val processedData: DataSet[(Int,Int)] = null
         processedData
     }
