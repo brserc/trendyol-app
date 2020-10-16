@@ -10,11 +10,7 @@ object TrendyolCaseBatchJob {
     val data: DataSet[UserAction] = env.readCsvFile[UserAction](filePath = "/trendyol_docker/case.csv",fieldDelimiter = "|",ignoreFirstLine = true)
 
 
-//    val userWithAllEvents = data.map{ua =>(ua.userId,ua.eventName)}.groupBy(0).reduceGroup {
-//      (in, out: Collector[(Int, String)]) =>
-//        in.toSet foreach (out.collect)
-//    }.map{ua => (ua._1,ua._2,1)}.groupBy(0).sum(2).filter{_._3 == 4}
-//    userWithAllEvents.print
+
 
   }
 }

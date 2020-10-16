@@ -1,6 +1,7 @@
 package ercanbaris
 
 import org.apache.flink.api.scala._
+import org.apache.flink.util.Collector
 
 object DataProcessor {
 
@@ -17,7 +18,7 @@ object DataProcessor {
     }
 
     def topFiveFulfilledAllEvents(data : DataSet[UserAction]) : DataSet[(Int)] = {
-        val processedData: DataSet[(Int)] = null
+        val processedData: DataSet[(Int)] = data.map{ua =>(ua.userId,ua.eventName,1)}.map{ua => (ua._1,ua._2,1)}.groupBy(0).sum(2).filter{_._3 == 4}.map{ua =>(ua._1)}
         processedData.print
         processedData
     }
