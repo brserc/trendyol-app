@@ -24,7 +24,7 @@ services:
     depends_on:
       - jobmanager
     volumes:
-      - "./src/results/:/trendyol_docker/results/"
+      - "./src/main/resources/results/:/trendyol_docker/src/main/resources/results/"
     command: taskmanager
     scale: 1
     environment:
