@@ -9,6 +9,8 @@ services:
     ports:
       - "8081:8081"
     command: jobmanager
+    volumes:
+      - "./src/main/resources/results:/trendyol_docker/results"
     environment:
       - |
         FLINK_PROPERTIES=
@@ -23,12 +25,13 @@ services:
       - "6122"
     depends_on:
       - jobmanager
-    volumes:
-      - "./src/main/resources/results/:/trendyol_docker/src/main/resources/results/"
     command: taskmanager
+    volumes:
+      - "./src/main/resources/results:/trendyol_docker/results"
     scale: 1
+    links:
+      - "jobmanager:jobmanager"
     environment:
       - |
         FLINK_PROPERTIES=
         jobmanager.rpc.address: jobmanager
-        taskmanager.numberOfTaskSlots: 2
