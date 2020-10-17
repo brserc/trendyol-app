@@ -12,8 +12,7 @@ Application runs on Docker. docker-compose.yml defines two containers for JobMan
 
 After running application you can access to flink dashboard via http://localhost:8081/ 
 
-## Dependencies
-
+If your application fails to write to local directory, you may try to run docker without sudo, and check your local folder permissions.
 
 ## Usage
 
