@@ -36,7 +36,6 @@ docker exec -u root -it $(docker ps --filter name=jobmanager --format={{.ID}}) f
 ### Testing
 
 Unit tests are written in BDD style. We used a fake data set as input and functions are expected to return provided outputs. Running sbt assembly automatically runs tests. Otherwise you can use : 
-Compile and run tests : 
 ```
 sbt test
 ```
