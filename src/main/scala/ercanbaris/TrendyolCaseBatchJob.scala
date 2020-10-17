@@ -9,11 +9,11 @@ object TrendyolCaseBatchJob {
     val env = ExecutionEnvironment.getExecutionEnvironment
     val data: DataSet[UserAction] = env.readCsvFile[UserAction](filePath = "/trendyol_docker/case.csv",fieldDelimiter = "|",ignoreFirstLine = true)
 
-    DataProcessor.uniqueProductViewByProductId(data).writeAsCsv("/trendyol_docker/results/uniqueProductViewByProductId.csv", "\n", "|", writeMode = FileSystem.WriteMode.OVERWRITE);
-    DataProcessor.uniqueEventCounts(data).writeAsCsv("/trendyol_docker/results/uniqueEventCounts.csv", "\n", "|",writeMode = FileSystem.WriteMode.OVERWRITE);
-    DataProcessor.topFiveFulfilledAllEvents(data).writeAsCsv("/trendyol_docker/results/topFiveFulfilledAllEvents.csv", "\n", "|",writeMode = FileSystem.WriteMode.OVERWRITE);
-    DataProcessor.allEventsOfUser(data,47).writeAsCsv("/trendyol_docker/results/allEventsOfUser.csv", "\n", "|",writeMode = FileSystem.WriteMode.OVERWRITE);
-    DataProcessor.productViewsOfUser(data,47).writeAsCsv("/trendyol_docker/results/productViewsOfUser.csv", "\n", "|",writeMode = FileSystem.WriteMode.OVERWRITE);
+    DataProcessor.uniqueProductViewByProductId(data).writeAsCsv("/trendyol_docker/results/uniqueProductViewByProductId.txt", "\n", "|", writeMode = FileSystem.WriteMode.OVERWRITE);
+    DataProcessor.uniqueEventCounts(data).writeAsCsv("/trendyol_docker/results/uniqueEventCounts.txt", "\n", "|",writeMode = FileSystem.WriteMode.OVERWRITE);
+    DataProcessor.topFiveFulfilledAllEvents(data).writeAsCsv("/trendyol_docker/results/topFiveFulfilledAllEvents.txt", "\n", "|",writeMode = FileSystem.WriteMode.OVERWRITE);
+    DataProcessor.allEventsOfUser(data,47).writeAsCsv("/trendyol_docker/results/allEventsOfUser.txt", "\n", "|",writeMode = FileSystem.WriteMode.OVERWRITE);
+    DataProcessor.productViewsOfUser(data,47).writeAsCsv("/trendyol_docker/results/productViewsOfUser.txt", "\n", "|",writeMode = FileSystem.WriteMode.OVERWRITE);
     env.execute("Trendyol")
   }
 }
