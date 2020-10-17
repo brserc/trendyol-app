@@ -44,6 +44,7 @@ object DataProcessor {
 
     def productViewsOfUser(data : DataSet[UserAction], userId : Int) : DataSet[Tuple1[Int]] = {
         val processedData: DataSet[Tuple1[Int]] = data.filter{_.userId == userId}
+                                                      .filter{_.eventName == "view"}
                                                       .map{ua => Tuple1(ua.productId)}
         //processedData.print
         processedData
