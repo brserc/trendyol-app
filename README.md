@@ -10,6 +10,8 @@ Application has a model class for reading User Action -which is a case class- fr
 
 Application runs on Docker. docker-compose.yml defines two containers for JobManager and TaskManager processes in Apache Flink to run. In the dockerfile we put the jar into container and give necessary permissions.
 
+After running application you can access to flink dashboard via http://localhost:8081/ 
+
 ## Dependencies
 
 
